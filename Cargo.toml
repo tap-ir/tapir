@@ -1,0 +1,65 @@
+[package]
+name = "tapir"
+version = "0.1.0"
+authors = ["Solal Jacob"]
+edition = "2021"
+
+description = "RESTruct is a REST API for rustruct"
+readme      = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tap = { version="0.1.0", git="https://github.com/tap-ir/tap.git" }
+tap-query = { version="0.1.0", git="https://github.com/tap-ir/tap-query.git" }
+tap-save = { version="0.1.0", git="https://github.com/tap-ir/tap-save.git" }
+
+tap-plugin-local = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-local.git" }
+tap-plugin-s3 = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-s3.git" }
+tap-plugin-exif = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-exif.git" }
+tap-plugin-hash = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-hash.git" }
+tap-plugin-merge = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-merge.git" }
+tap-plugin-magic = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-magic.git" }
+tap-plugin-prefetch = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-prefetch.git" }
+tap-plugin-partition = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-partition.git" }
+tap-plugin-lnk = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-lnk.git" }
+tap-plugin-evtx = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-evtx.git" }
+tap-plugin-registry = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-registry.git" }
+tap-plugin-ntfs = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-ntfs.git" }
+tap-plugin-mft = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-mft.git" }
+tap-plugin-clamav = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-clamav.git" }
+tap-plugin-device  = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-device.git", optional=true }
+tap-plugin-yara = { version="0.1.0", git="https://github.com/tap-ir/tap-plugin-yara.git", optional=true }
+
+rocket = { version="0.5.0-rc.1", features = ["tls", "json"]}
+serde = { version = "1.0", features = ["derive"] }
+serde_derive = "1.0"
+serde_json = "1.0"
+log = "0.4"
+pretty_env_logger = "0.4.0"
+clap = "2.33.3"
+dotenv = "0.15.0"
+toml = "0.5.6"
+chrono = { version = "0.4", features = ["serde"] }
+anyhow = { version = "1.0.40"}
+futures = "0.3.17"
+tokio = { version = "1.14.0" }
+include_dir = "0.7.2"
+json_value_merge = "1.1"
+
+webbrowser = "0.6" #if feature frontend-dev ?
+
+#[dependencies.rocket_contrib]
+#default-features = false
+#features = ["json"]
+#[target.'cfg(target_os = "windows")'.dependencies]
+#[target.'cfg(target_os = "windows")'.build-dependencies]
+
+[build-dependencies]
+embed-resource = "1.6"
+
+[features]
+device = ["tap-plugin-device"]
+yara = ["tap-plugin-yara"]
+frontend = []
+frontend-dev = []
