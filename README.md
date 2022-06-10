@@ -1,4 +1,4 @@
-#TAPIR
+# TAPIR
 
 **TAPIR** (Trustable Artifacts Parser for Incident Response) is a multi-user, client/server, incident response framework based on the [TAP](https://github.com/tap-ir/) project. 
 
@@ -13,7 +13,7 @@
 
 - It's multiplateform and run on Linux, Mac OS X, and Windows.
 
-**TAPIR** **__ is in beta and is not yet ready for production use, in this version SSL is not activated by default, and the local plugin can access any file on the server. We recommend using it on a local or private network, and to change the default API KEY on the config file or on the environment variable.__**
+***TAPIR is in beta and is not yet ready for production use, in this version SSL is not activated by default, and the local plugin can access any file on the server. We recommend using it on a local or private network, and to change the default API KEY on the config file or on the environment variable.***
 
 ## Release binary 
 
@@ -81,10 +81,12 @@ The binary with the integrated frontend will be generated in `target/release/tap
 
 Checkout [TAPIR-Frontend](https://github.com/tap-ir/tapir-frontend)  in an other directory : 
 
+```
 git clone https://github.com/tap-ir/tapir-frontend.git
 cd tapir-frontend
 npm install --legacy-peer-deps
 npm run build
+```
 
 Go back to **TAPIR** directory and indicate the path to the [TAPIR-Frontend](https://github.com/tap-ir/tapir-frontend) directory in the `TAPIR_FRONTEND_BUILD_PATH` environment variable
 
@@ -182,7 +184,6 @@ apikey : "key"
 
 At time of writting this documentation this is the plugin included in **TAPIR**  by default or via the features flag :
 
-```
 | Name | Category | Description |
 | ---- | -------- | ----------- |
 | local |Input | Load files or directory from the filesystem |
@@ -201,11 +202,10 @@ At time of writting this documentation this is the plugin included in **TAPIR** 
 | clamav | Malware | Scan file content with ClamAV | 
 | device | Input | Mount a device |
 | yara | Malware | Scan file content with Yara |
-```
 
 ## Help
 
-We will answer your questions on [Discord](https://discord.gg/C8UdFG6K)
+To discuss about the project and ask your questions join our [Discord](https://discord.gg/C8UdFG6K) server !
 
 ## License
 
