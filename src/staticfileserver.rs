@@ -6,7 +6,7 @@ use rocket::response::{self, Responder};
 use rocket::http::uri::fmt::Path;
 use include_dir::{include_dir, Dir};
 
-static FRONTEND_DIR : Dir = include_dir!("$CARGO_MANIFEST_DIR/../tapir-frontend/build"); //XXX pass as cargo argument
+static FRONTEND_DIR : Dir = include_dir!("$TAPIR_FRONTEND_BUILD_PATH");
 
 #[derive(Debug, Clone)]
 pub struct StaticFileServer

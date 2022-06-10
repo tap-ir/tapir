@@ -5,7 +5,6 @@ use std::env;
 use std::fs::File;
 use std::net::SocketAddr;
 use std::io::{self, Read};
-use std::collections::HashMap;
 
 use tap::session::{Session};
 
@@ -21,9 +20,7 @@ struct Config
 {
   address : SocketAddr,
   upload : String,
-  plugins_types : HashMap<String, Vec<String>>,
   api_key : String,
-  preload : String, 
 }
 
 /// We first check argument in this order if not found : command line, environment, config file, then default value 
@@ -44,12 +41,6 @@ fn usage() -> Arguments
       .long("address")
       .value_name("ADDRESS")
       .help("Listening address & port")
-      .takes_value(true))
-    .arg(Arg::with_name("preload")
-      .short("p")
-      .long("preload")
-      .value_name("PRELOAD")
-      .help("Path to data to preload")
       .takes_value(true))
     .arg(Arg::with_name("upload")
       .short("u")
@@ -90,12 +81,6 @@ fn usage() -> Arguments
     .or_else(|| Some(([127, 0, 0, 1], 3583).into()))
     .unwrap();
 
-  let preload = matches.value_of("preload")
-    .map(|s| s.to_owned())
-    .or_else(|| env::var("PRELOAD").ok())
-    .or_else(|| config.clone().map(|config| config.preload))
-    .or(None);
-  
   let upload = matches.value_of("upload")
     .map(|s| s.to_owned())
     .or_else(|| env::var("UPLOAD").ok())
@@ -106,11 +91,9 @@ fn usage() -> Arguments
     .map(|s| s.to_owned())
     .or_else(|| env::var("API_KEY").ok())
     .or_else(|| config.clone().map(|config| config.api_key))
-    .or_else(|| Some(String::from("RESTRUCT_KEY"))).unwrap();
+    .or_else(|| Some(String::from("key"))).unwrap();
 
-  let plugins_types = config.map(|config| config.plugins_types).unwrap_or_else(HashMap::new);
-
-  Arguments{address, preload, upload, plugins_types, api_key}
+  Arguments{address, upload, api_key}
 }
 
 /// register different plugins that will be available from the server

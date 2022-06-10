@@ -2,7 +2,6 @@ use std::error::Error;
 use std::path::PathBuf;
 use std::net::SocketAddr;
 use std::sync::Arc;
-use std::collections::HashMap;
 use std::io::Read;
 use std::io::SeekFrom;
 use std::io::Write;
@@ -15,7 +14,6 @@ use ::tap_save::Save;
 use ::tap_query::filter::Filter;
 use ::tap_query::timeline as query_timeline;
 use ::tap_query::attribute::attribute_count as query_attribute_count;
-use tap_plugin_magic::{datatypes, plugins_datatype};
 
 use crate::asyncvfile::AsyncVFile;
 #[cfg(feature = "frontend")]
@@ -58,9 +56,7 @@ macro_rules! spawn_thread
 pub struct Arguments
 {
   pub address : SocketAddr,
-  pub preload : Option<String>,
   pub upload : String,
-  pub plugins_types : HashMap<String, Vec<String>>,
   pub api_key : String,
 }
 
@@ -471,21 +467,6 @@ async fn query(_key : ApiKey<'_>, session : &State<ArcSession>, query_info : Jso
   }).await.unwrap()
 }
 
-
-/// Scan server and execute plugin, this is deprecated.
-#[post("/scan")]
-async fn scan(_key : ApiKey<'_>, session : &State<ArcSession>, plugins_types : &State<HashMap<String, Vec<String>>>) -> Json<Vec<(TreeNodeId, String)>>
-{
-  let session = session.inner().clone();
-  let plugins_types = plugins_types.inner().clone();
-  rocket::tokio::task::spawn_blocking(move || {
-
-  let _nodes = datatypes(&session.tree);
-  Json(plugins_datatype(&session.tree, &plugins_types))
-  }).await.unwrap()
-}
-
-
 /// Upload a file to the server to be processed later.
 #[post("/upload?<name>", data = "<data>")]
 async fn upload(_key : ApiKey<'_>, upload_dir : &State<String>, name : String, data : Data<'_>) -> Result<Json<u64>, BadRequest<String>>
@@ -744,7 +725,6 @@ impl<'r> FromRequest<'r> for ApiKey<'r>
 pub async fn serve(args : Arguments, session : Session) -> Result<(), Box<dyn Error>>
 {
   let session = Arc::new(session);
-  let config_plugins_types = args.plugins_types; 
   let upload_dir = args.upload;
   let config = Config { port: args.address.port(), 
                         address: args.address.ip(), 
@@ -763,11 +743,10 @@ pub async fn serve(args : Arguments, session : Session) -> Result<(), Box<dyn Er
           .attach(Shield::new()) 
           .attach(CORS)
           .manage(session)
-          .manage(config_plugins_types)
           .manage(upload_dir)
           .manage(api_key)
           .mount("/api", routes![plugins, plugin, root, node, nodes, node_by_path, path, parent_id, run,
-                 task_count, join, task, tasks, attribute, scan, save, load, node_count, attribute_count, 
+                 task_count, join, task, tasks, attribute, save, load, node_count, attribute_count, 
                  schedule, query, timeline, upload, download, read, download_id, delete]);
 
   #[cfg(feature = "frontend-dev")]

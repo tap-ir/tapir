@@ -1,14 +1,4 @@
-address = "127.0.0.1:3583"
-#address = "0.0.0.0:3583"
-preload = ""
+address = "127.0.0.1:3583" #use that to only accept local connection
+#address = "0.0.0.0:3583" #use that to accept remote connection
 upload = "./upload"
 api_key = "key"
-
-[plugins_types]
-ntfs = ["filesystem/ntfs"]
-partition = ["volume/partition"]
-exif = ["image/jpeg", "image/png", "image/tiff"]
-prefetch = ["windows/prefetch"]
-lnk = ["windows/lnk"]
-evtx = ["windows/evtx"]
-registry = ["windows/registry"]
