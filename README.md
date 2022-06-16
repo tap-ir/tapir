@@ -21,10 +21,9 @@ Release binary are available [here](https://github.com/tap-ir/tapir/releases)
 
 ## Documentation 
 
-- [User documentation](https://tap-ir.github.io/doc/user) : How to interact with **TAPIR** using [TAPyR-cmd](https://github.com/tap-ir/tapyr-cmd) and [TAPIR-Frontend](https://github.com/tap-ir/tapir-frontend)
-- [TAP crate developer documentation](https://tap-ir.github.io/doc/dev/rustdoc/tap) : The "rustdocs" rust documentation for the [TAP](https://github.com/tap-ir/tap) crate used by **TAPIR**
-- [TAPIR developer documentation](https://tap-ir.github.io/doc/dev/rustdoc/tapir) : The "rustdocs" rust documentation for **TAPIR**
-- [REST API documentation](https://tap-ir.github.io/doc/dev/restapi) : The REST API call description
+- [User documentation](https://tap-ir.github.io/docs/) : How to interact with **TAPIR** using [TAPyR-cmd](https://github.com/tap-ir/tapyr-cmd) and [TAPIR-Frontend](https://github.com/tap-ir/tapir-frontend)
+- [TAP developer documentation](https://tap-ir.github.io/docs/dev/rustdoc/tap) : The "rustdocs" rust documentation for the [TAP](https://github.com/tap-ir/tap) crate used by **TAPIR**
+- [REST API documentation](https://tap-ir.github.io/docs/dev/restapi) : The REST API call description
 
 ## Building
 
