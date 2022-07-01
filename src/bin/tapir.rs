@@ -75,7 +75,7 @@ fn usage() -> Arguments
 
   let address = matches.value_of("address")
     .map(|s| s.to_owned())
-    .or_else(|| env::var("ADDRESS").ok())
+    .or_else(|| env::var("TAPIR_ADDRESS").ok())
     .and_then(|addr| addr.parse().ok())
     .or_else(|| config.clone().map(|config| config.address))
     .or_else(|| Some(([127, 0, 0, 1], 3583).into()))
@@ -83,13 +83,13 @@ fn usage() -> Arguments
 
   let upload = matches.value_of("upload")
     .map(|s| s.to_owned())
-    .or_else(|| env::var("UPLOAD").ok())
+    .or_else(|| env::var("TAPIR_UPLOAD").ok())
     .or_else(|| config.clone().map(|config| config.upload))
     .or_else(|| Some(String::from("./upload"))).unwrap();
 
   let api_key = matches.value_of("apikey")
     .map(|s| s.to_owned())
-    .or_else(|| env::var("API_KEY").ok())
+    .or_else(|| env::var("TAPIR_APIKEY").ok())
     .or_else(|| config.clone().map(|config| config.api_key))
     .or_else(|| Some(String::from("key"))).unwrap();
 

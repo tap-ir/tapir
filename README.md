@@ -2,7 +2,7 @@
 
 **TAPIR** (Trustable Artifacts Parser for Incident Response) is a multi-user, client/server, incident response framework based on the [TAP](https://github.com/tap-ir/) project. 
 
-- It take as input  **file**, a **directory** containing different files (from a triage tool), a **disk dump**, or a disk **device**. Use different plugins to virtually extract data and metadata from those files, let you access them in an homogenous way via a REST API, and integrate a search engine [TAP-QUERY](https://github.com/tap-ir/tap-query) that let you create complex query to filter that data and metadata. 
+- It take as input  **file** (can be a disk dump or any kind of files), a **directory** containing different files (from a triage tool), a **disk dump**, or a disk **device**. Use different plugins to virtually extract data and metadata from those files, let you access them in an homogenous way via a REST API, and integrate a search engine [TAP-QUERY](https://github.com/tap-ir/tap-query) that let you create complex query to filter that data and metadata. 
 
 - Server can be accessed remotely or locally via it's REST API, or via :
 
@@ -159,10 +159,9 @@ You can specifiy the addresse and port used by the server, the API key used to a
 This variable can also be configured in the environment : 
 
 ```
-FILE : Custom config file path
-ADDRESS : Listening address & port
-UPLOAD : Path to the upload directory
-APIKEY : API key
+TAPIR_ADDRESS : Listening address & port
+TAPIR_UPLOAD : Path to the upload directory
+TAPIR_APIKEY : API key
 ```
 
 **TAPIR** will look first for an environment variable, then if not found for the variable in the config file, then for the default value.
