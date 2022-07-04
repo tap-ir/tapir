@@ -65,8 +65,8 @@ You will also need to have installed : [cargo](https://doc.rust-lang.org/cargo/g
 ```
 git clone https://github.com/tap-ir/tapir-ws.git
 cd tapir-ws
-git submodule init
-git submodule update
+git submodule update --init --recursive
+git submodule foreach git checkout main
 cd tapir-frontend
 npm install --legacy-peer-deps
 npm run build
