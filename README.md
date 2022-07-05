@@ -15,9 +15,15 @@
 
 ***TAPIR is in beta and is not yet ready for production use, in this version SSL is not activated by default, and the local plugin can access any file on the server. We recommend using it on a local or private network, and to change the default API KEY on the config file or on the environment variable.***
 
-## Release binary 
+## Download & installation 
 
-Release binary are available [here](https://github.com/tap-ir/tapir/releases)
+Debian/Ubuntu package & Windows binary are available [here](https://github.com/tap-ir/tapir/releases)
+
+To install in Debian or Ubuntu :
+
+```
+sudo dpkg -i tapir_0.1.0_amd64.deb 
+```
 
 ## Documentation 
 
