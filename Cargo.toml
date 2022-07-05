@@ -63,3 +63,7 @@ device = ["tap-plugin-device"]
 yara = ["tap-plugin-yara"]
 frontend = []
 frontend-dev = []
+
+[package.metadata.deb]
+assets = [["tapir.toml", "etc/", "444"],
+          ["target/release/tapir", "usr/bin/", "755"]]
