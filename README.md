@@ -213,4 +213,4 @@ To discuss about the project and ask your questions join our [Discord](https://d
 
 ## License
 
-The contents of this repository is available under Affero GPLv3 license.
+The contents of this repository is available under GPLv3 license.
